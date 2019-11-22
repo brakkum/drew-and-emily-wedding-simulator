@@ -74,7 +74,8 @@
                             "This is not a joke.",
                             "This simulation requires Drew.",
                             "TORONTO.",
-                            "We cannot continue without Drew."
+                            "We cannot continue without Drew.",
+                            "Please don't confuse me like this."
                         ];
                         dialog_box.innerText = drew_plz[Math.floor(Math.random() * drew_plz.length)];
                         break;
@@ -91,10 +92,11 @@
                         let drew_plz = [
                             "Drew, this is not the time for that.",
                             "Drew, everyone is watching.",
-                            "What would Nergal do.",
+                            "What would Nergal do?",
                             "Please, don't.",
                             "It's time to stop.",
-                            "Do it for Paul Stanley"
+                            "Do it for Paul Stanley.",
+                            "Do it for Schnappi."
                         ];
                         dialog_box.innerText = drew_plz[Math.floor(Math.random() * drew_plz.length)];
                         break;
@@ -115,6 +117,7 @@
                             "Please, even Drew played along.",
                             "We don't have all night.",
                             "Please just push the button.",
+                            "I'm over this."
                         ];
                         dialog_box.innerText = emily_plz[Math.floor(Math.random() * emily_plz.length)];
                         break;
@@ -135,7 +138,8 @@
                             "Even Drew said yes.",
                             "NOT THAT ONE.",
                             "This is not how this was supposed to go.",
-                            "You're just delaying the inevitable."
+                            "You're just delaying the inevitable.",
+                            "WWJD."
                         ];
                         dialog_box.innerText = emily_plz[Math.floor(Math.random() * emily_plz.length)];
                         break;
@@ -151,12 +155,12 @@
                     case Actions.HAVE_NOT_SHOWN_AFFECTION: {
                         let show_affection = [
                             "You must show affection. The law requires it.",
-                            "Jesus is waiting.",
                             "There's nowhere to go, you have to.",
                             "I promise no one is filming.",
                             "Even just a handshake.",
                             "We're all waiting.",
                             "Do it for Jon Bon Jovi.",
+                            "Maybe just a fist bump?"
                         ];
                         dialog_box.innerText = show_affection[Math.floor(Math.random() * show_affection.length)];
                         break;
@@ -188,9 +192,9 @@
             let firstPageLoad = () => {
                 dialog_box.innerText = "Welcome to the simulation. Please give the device to Drew.";
                 confirm_button.innerText = "I am Drew";
+                confirm_button.onclick = () => updatePage(Actions.ITS_DREW);
                 deny_button.innerText = "I am not Drew";
                 deny_button.onclick = () => updatePage(Actions.ITS_NOT_DREW);
-                confirm_button.onclick = () => updatePage(Actions.ITS_DREW);
             };
             firstPageLoad();
         </script>
