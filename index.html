@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Drew and Emily's Wedding Rehearsal Program">
+        <meta name="keywords" content="Drew,Emily,Wedding,Rehearsal">
+        <meta name="author" content="Daniel Brakke">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bulma.min.css">
+        <style>
+            .action-button {
+                margin: 20px !important;
+            }
+            .main-section {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            #dialog-box {
+                height: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body class="section main-section" id="body-container" style="width: 90%; max-width: 900px; margin: auto;">
+        <h2 id="dialog-box" class="is-size-2 has-text-centered">
+
+        </h2>
+        <div id="buttons-container" class="buttons is-centered">
+            <button class="button action-button is-success is-light" id="confirm-button">
+
+            </button>
+            <button class="button action-button is-danger is-light" id="deny-button">
+
+            </button>
+        </div>
+        <script>
+            const Actions = {
+                ITS_DREW: 0,
+                ITS_NOT_DREW: 1,
+                DREW_SAID_YES: 2,
+                DREW_SAID_NO: 3,
+                ITS_EMILY: 4,
+                ITS_NOT_EMILY: 5,
+                EMILY_SAID_YES: 6,
+                EMILY_SAID_NO: 7,
+                HAVE_SHOWN_AFFECTION: 8,
+                HAVE_NOT_SHOWN_AFFECTION: 9,
+                SELF_DESTRUCT: 10,
+                RESTART: 11,
+            };
+
+            let dialog_box = document.getElementById("dialog-box");
+            let confirm_button = document.getElementById("confirm-button");
+            let deny_button = document.getElementById("deny-button");
+
+            let updatePage = action => {
+                switch (action) {
+                    case Actions.ITS_NOT_DREW: {
+                        let drew_plz = [
+                            "Please, this is Drew's time.",
+                            "I just want Drew.",
+                            "This is not a joke.",
+                            "This simulation requires Drew.",
+                            "TORONTO.",
+                            "We cannot continue without Drew."
+                        ];
+                        dialog_box.innerText = drew_plz[Math.floor(Math.random() * drew_plz.length)];
+                        break;
+                    }
+                    case Actions.ITS_DREW: {
+                        dialog_box.innerText = "Hello Drew. Please say 'I do'.";
+                        confirm_button.innerText = "I do";
+                        confirm_button.onclick = () => updatePage(Actions.DREW_SAID_YES);
+                        deny_button.innerText = "I do not";
+                        deny_button.onclick = () => updatePage(Actions.DREW_SAID_NO);
+                        break;
+                    }
+                    case Actions.DREW_SAID_NO: {
+                        let drew_plz = [
+                            "Drew, this is not the time for that.",
+                            "Drew, everyone is watching.",
+                            "What would Nergal do.",
+                            "Please, don't.",
+                            "It's time to stop.",
+                            "Do it for Paul Stanley"
+                        ];
+                        dialog_box.innerText = drew_plz[Math.floor(Math.random() * drew_plz.length)];
+                        break;
+                    }
+                    case Actions.DREW_SAID_YES: {
+                        dialog_box.innerText = "Splendid! Please give the device to Emily.";
+                        confirm_button.innerText = "I am Emily";
+                        confirm_button.onclick = () => updatePage(Actions.ITS_EMILY);
+                        deny_button.innerText = "I am not Emily";
+                        deny_button.onclick = () => updatePage(Actions.ITS_NOT_EMILY);
+                        break;
+                    }
+                    case Actions.ITS_NOT_EMILY: {
+                        let emily_plz = [
+                            "Please, we can't do this all day.",
+                            "Why must you play with me?",
+                            "Are you done yet?",
+                            "Please, even Drew played along.",
+                            "We don't have all night.",
+                            "Please just push the button.",
+                        ];
+                        dialog_box.innerText = emily_plz[Math.floor(Math.random() * emily_plz.length)];
+                        break;
+                    }
+                    case Actions.ITS_EMILY: {
+                        dialog_box.innerText = "Hello Emily. Please say 'I do'.";
+                        confirm_button.innerText = "I do";
+                        confirm_button.onclick = () => updatePage(Actions.EMILY_SAID_YES);
+                        deny_button.innerText = "I do not";
+                        deny_button.onclick = () => updatePage(Actions.EMILY_SAID_NO);
+                        break;
+                    }
+                    case Actions.EMILY_SAID_NO: {
+                        let emily_plz = [
+                            "Sorry, that's the wrong one.",
+                            "I don't think you understand, it's 'I do'",
+                            "🙄",
+                            "Even Drew said yes.",
+                            "NOT THAT ONE.",
+                            "This is not how this was supposed to go.",
+                            "You're just delaying the inevitable."
+                        ];
+                        dialog_box.innerText = emily_plz[Math.floor(Math.random() * emily_plz.length)];
+                        break;
+                    }
+                    case Actions.EMILY_SAID_YES: {
+                        dialog_box.innerText = "Wonderful! Now display your affection in an appropriate manner.";
+                        confirm_button.innerText = "We have shown affection";
+                        confirm_button.onclick = () => updatePage(Actions.HAVE_SHOWN_AFFECTION);
+                        deny_button.innerText = "We have not shown affection";
+                        deny_button.onclick = () => updatePage(Actions.HAVE_NOT_SHOWN_AFFECTION);
+                        break;
+                    }
+                    case Actions.HAVE_NOT_SHOWN_AFFECTION: {
+                        let show_affection = [
+                            "You must show affection. The law requires it.",
+                            "Jesus is waiting.",
+                            "There's nowhere to go, you have to.",
+                            "I promise no one is filming.",
+                            "Even just a handshake.",
+                            "We're all waiting.",
+                            "Do it for Jon Bon Jovi.",
+                        ];
+                        dialog_box.innerText = show_affection[Math.floor(Math.random() * show_affection.length)];
+                        break;
+                    }
+                    case Actions.HAVE_SHOWN_AFFECTION: {
+                        dialog_box.innerText = "Good job. You are now married.";
+                        confirm_button.innerText = "Run simulation again";
+                        confirm_button.onclick = () => updatePage(Actions.RESTART);
+                        deny_button.innerText = "Self destruct";
+                        deny_button.onclick = () => updatePage(Actions.SELF_DESTRUCT);
+                        break;
+                    }
+                    case Actions.SELF_DESTRUCT: {
+                        dialog_box.innerText = "Thank you. Please enjoy this song.";
+                        confirm_button.style.display = "none";
+                        deny_button.style.display = "none";
+                        let audio = new Audio("/nggyu.mp3");
+                        audio.play();
+                        document.getElementsByTagName("html")[0].style.background = "url('https://img.apmcdn.org/768cb350c59023919f564341090e3eea4970388c/normal/5034f3-20180309-rick-astley.jpg')";
+                        break;
+                    }
+                    default: {
+                        firstPageLoad();
+                        break;
+                    }
+                }
+            };
+
+            let firstPageLoad = () => {
+                dialog_box.innerText = "Welcome to the simulation. Please give the device to Drew.";
+                confirm_button.innerText = "I am Drew";
+                deny_button.innerText = "I am not Drew";
+                deny_button.onclick = () => updatePage(Actions.ITS_NOT_DREW);
+                confirm_button.onclick = () => updatePage(Actions.ITS_DREW);
+            };
+            firstPageLoad();
+        </script>
+    </body>
+</html>
