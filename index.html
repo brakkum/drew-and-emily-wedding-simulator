@@ -64,6 +64,7 @@
             let dialog_box = document.getElementById("dialog-box");
             let confirm_button = document.getElementById("confirm-button");
             let deny_button = document.getElementById("deny-button");
+            let rick = new Audio("/nggyu.mp3");
 
             let updatePage = action => {
                 switch (action) {
@@ -177,8 +178,7 @@
                         dialog_box.innerText = "Thank you. Please enjoy this song.";
                         confirm_button.style.display = "none";
                         deny_button.style.display = "none";
-                        let audio = new Audio("/nggyu.mp3");
-                        audio.play();
+                        rick.play();
                         document.getElementsByTagName("html")[0].style.background = "url('https://img.apmcdn.org/768cb350c59023919f564341090e3eea4970388c/normal/5034f3-20180309-rick-astley.jpg')";
                         break;
                     }
